@@ -3,21 +3,24 @@
 \section{Introductie} % The \section*{} command stops section numbering
 \label{sec:introductie}
 
-%\begin{itemize}
-%  \item de probleemstelling en context
-%  \item de motivatie en relevantie voor het onderzoek
-%  \item de doelstelling en onderzoeksvraag/-vragen
-%\end{itemize}
+Met haar snelle opkomst is de microservice-architectuur binnengedrongen in talrijke bedrijven. Vele slagen erin om deze strategie correct te implementeren, maar anderen lijden onder de nieuwe manier van werken met verschillende onafhankelijke services. \\
+Het gebruik van de microservice-architectuur leunt er zich enerzijds goed toe het werk en het “ownership” van de verschillende services te verdelen onder teams. Elk team werkt op zijn eigen manier, onder idealiter een “agile” ontwikkelingsproces, aan de aan haar toegekende service. Een microservice-architectuur omvat anderzijds snel 10 of meer services, waardoor teams ook sneller een relatief groot aantal services moeten beheren. \\
+Hieruit kan geconcludeerd worden dat er nood is aan het opbouwen van standaarden overheen teams. Het opleggen van een bepaalde standaard brengt een vorm van consistentie en meer consistentie leidt uiteindelijk tot stabiliteit. Dit onderzoek zal bijdragen tot het creëren van een doorgronde opzet als basis tot stabiele backend oplossingen in Node.js, met daarbij specifiek de focus op REST API als microservice. \\
+Voor het doorvoeren van bepaalde standaarden moet er gegrond onderzoek gevoerd worden welke kan onderbouwen waarom de standaarden in kwestie gehanteerd worden. In dergelijk onderzoek kunnen volgende zaken afgevraagd worden: \\
 
-Het opkomen van de microservice architectuur heeft dit ook doen binnen dringen in talrijke bedrijven. Vele slagen erin om deze strategie correct te implementeren, maar vele lijden ook onder de nieuwe manier van werken met verschillende onafhankelijke services.
-Het gebruik van dit soort architectuur leunt er zich ook toe om het werk en `ownership` van de verschillende services te verdelen onder teams. Elk team werkt op zijn eigen manier onder, idealiter, een `agile` ontwikkelingsproces aan de toegekende service. Een microservice architectuur omvat ook snel 10 tot 15 services, waardoor teams ook sneller een bepaald aantal van de services beheren. \\
-Hieruit kan geconcludeerd worden dat er nood is aan het opbouwen van standaarden over heen teams. Het opleggen van een bepaalde standaard brengt een vorm van consistentie en meer consistentie lijdt uiteindelijk tot stabiliteit. Dit onderzoek zal bijdragen tot het creëren van een doorgronde opzet als basis tot stabiele backend services in Node.js, met daarbij specifiek de focus op REST API als microservice. \\
-Voor het doorvoeren van bepaalde standaarden moet er gegrond onderzoek gevoerd worden die kan onderbouwen waarom de standaard in kwestie gehanteerd wordt. Hierbij kan afgevraagd worden waarom een Typescript integratie benefiet zou hebben in Node.js en hoe zo een integratie gebeurd? Welke stappen worden uitgevoerd om een bepaald niveau van `code quality` te bekomen? Wat zijn de meest prominente technologieën als `tech stack` voor REST API in Node.js? Hoe kunnen REST principes correct toegepast worden in correlatie met de `tech stack` en projectstructuur?
+\begin{itemize}
+  \item Waarom wordt Node.js alom gebruikt voor serverapplicaties?
+  \item In welke zin is een Typescript-integratie voordelig in Node.js-applicaties en hoe kan zo een integratie best gebeuren?
+  \item Hoe kan “code linting” een bepaald niveau van codekwaliteit garanderen?
+  \item Wat en welke zijn Node.js-libraries en kunnen toepasselijk zijn bij de uitwerking van een RESTful serverapplicatie?
+  \item Waar wordt rekening mee gehouden bij het opzetten van een databankconnectie in Node.js-applicaties?
+  \item In hoeverre wordt een API gedocumenteerd en wat zijn duidelijke en gebruiksvriendelijke documentatie-frameworks?
+\end{itemize}
 
 %---------- Stand van zaken ---------------------------------------------------
 
-\section{State-of-the-art}
-\label{sec:state-of-the-art}
+\section{Achtergrond}
+\label{sec:achtergrond}
 
 % Voor literatuurverwijzingen zijn er twee belangrijke commando's:
 % \autocite{KEY} => (Auteur, jaartal) Gebruik dit als de naam van de auteur
@@ -28,56 +31,63 @@ Voor het doorvoeren van bepaalde standaarden moet er gegrond onderzoek gevoerd w
 
 \subsection{Waarom Node.js?}
 
-Node.js is sinds enkele jaren één van de standaarden voor backend services, samen met grootheden zoals Java en Python. Sinds de eerst release in 2009 is het steeds volwassener geworden en heeft daarbij een stand vaste community opgebouwd. De JavaScript runtime environment maakt het mogelijk om de geliefde frontend web taal ook naar de backend te brengen. \\
-Met de opkomst van microservices biedt Node.js een geschikte omgeving. Door de makkelijke schaalbaarheid en native ondersteuning voor HTTP aanvragen leunt het zich perfect voor gebruik als REST API. Met native JSON serialisatie en de-serialisatie biedt het een veel gebruikte standaard voor client/server-architectuur.
+Node.js is een JavaScript runtime environment die het mogelijk maakt om de geliefde frontend taal ook naar de backend te brengen. \\
+Sinds de eerste release in 2009 is Node.js steeds volwassener geworden en heeft het daarbij een standvaste community opgebouwd. Node.js is sinds enkele jaren één van de voornaamste standaarden voor backend-services, samen met klassieke populaire platformen zoals Java en Python.  \\
+Met de opkomst van microservices biedt Node.js een geschikt platform door de makkelijke schaalbaarheid. Met native ondersteuning voor HTTP-requests leunt het zich perfect voor gebruik ter implementatie van een REST API. De native JSON serialisatie en deserialisatie biedt een veel gebruikte standaard voor een client/server-architectuur.
+Dit onderzoek stelt een basis samen voor backend-applicaties en gebruikt daarvoor Node.js als backend-framework.
 
 \subsection{TypeScript integratie}
 
-JavaScript geeft de mogelijkheid om snel en vrij te ontwikkelen door zijn dynamisch typering, wat betekend dat de types van gedefinieerde variabelen niet gekend zijn tot in runtime. Naast dynamisch is JavaScript ook zwak getypeerd en betekend dat variabelen niet gebonden zijn tot één data type. Dit staat toe om variabelen verschillende data types, zoals string of number, te geven doorheen de code. \\
-Voor veel ontwikkelaars is de vrijheid en het niet zorgen hoeven te maken om type casting een enorm pluspunt. Deze manier van werken kan spijtig genoeg snel tot onverwachte bugs leiden, vaak onder de vorm van verstopte `undefined` errors. Dergelijke bugs ontstaan door dynamische typering en het moeten nakijken van types in de runtime. \\
-TypeScript maakt JavaScript statisch getypeerd en zal types nakijken voor runtime, tijdens compiler time. Dit staat toe om `undefined` en mogelijke type errors preventief te achterhalen. \\
-Bug preventie en statische typering zijn maar enkele voordelen die TypeScript biedt als toevoeging aan JavaScript.
+JavaScript geeft de mogelijkheid om snel en vrij te ontwikkelen door zijn dynamisch typering, wat betekend dat de types van gedefinieerde variabelen niet gekend zijn tot in runtime. Naast dynamisch is JavaScript ook zwak getypeerd en betekend dat dat variabelen niet gebonden zijn tot één datatype. Dit staat toe om variabelen verschillende datatypes, zoals string of number, te geven doorheen de code. \\
+Voor veel ontwikkelaars is de vrijheid en geen zorgen hoeven te maken om type-casting een enorm pluspunt. Deze manier van werken kan spijtig genoeg snel tot onverwachte bugs leiden, vaak onder de vorm van verstopte “undefined” errors. Dergelijke bugs ontstaan door dynamische typering en het moeten controleren van types in de runtime. \\
+TypeScript maakt JavaScript statisch getypeerd en zal types nakijken vóór runtime, tijdens compiler time. Dit staat toe om “undefined” en mogelijke type-errors preventief op te vangen. \\
+Bug preventie en statische typering zijn echter maar enkele voordelen die TypeScript biedt als toevoeging aan JavaScript. Voor het onderzoek wordt TypeScript geïntegreerd in een Node.js-applicatie en worden bepaalde principes en technische termen verder aangekaart.
 
 \subsection{Code linting}
 
-Waar TypeScript dient als taal veiligheid voor JavaScript is het nog steeds aan de ontwikkelaar zelf om zich te behoeden van mogelijke fouten in code. De meeste IDE's (Integrated Development Environment) houden wel rekening met typering in TypeScript en melden dat ook aan de ontwikkelaar. In deze tijd bevatten de meeste editors, zoals Visual Studio Code of WebStorm, een krachtige en toepasselijke IDE. \\ 
-Voor het behouden van consistentie in de manier waarop code wordt geschreven binnen de service wordt er een `linter` geconfigureerd. Het geeft garantie tot code kwaliteit en het hanteren van specifieke best practices. De linter zorgt ervoor dat bepaalde `lint` regels gevolgd worden en past code formattering toe wanneer gespecificeerd.
+Waar TypeScript dient als taalveiligheid voor JavaScript is het nog steeds aan de ontwikkelaar om zich te behoeden van mogelijke fouten in de code. Meeste IDE's (Integrated Development Environment) houden wel rekening met typering in TypeScript en markeren type-errors in de editor. In deze tijd bevatten de meeste editors zoals Visual Studio Code of WebStorm een krachtige en toepasselijke IDE. \\ 
+Voor het behouden van consistentie in de manier waarop code wordt geschreven binnen een project wordt er een “linter” geconfigureerd. Het geeft garantie tot codekwaliteit en het hanteren van specifieke ``best practices''. De linter zorgt ervoor dat bepaalde “lint”-regels gevolgd worden en past codeformattering toe wanneer gespecificeerd. \\
+In dit onderzoek wordt een linter geconfigureerd door middel van de ES-lint library, met integratie van bijpassende lint-regels voor JavaScript en TypeScript.
 
-\subsection{Node.js framework}
+\subsection{Frameworks en libraries in Node.js}
 
-Net zoals bij de opkomst van JavaScript in de jaren 2000, is er bij de opkomst van Node.js ook onvermijdelijk markt ontstaan voor verscheidene frameworks gebaseerd op Node.js. In deze groei zijn er die dat zich focussen op het aanbieden van een volledig nieuwe omgeving op basis van bepaalde templates. Anderzijds zijn er ook frameworks die meer worden aangeboden als library, met als doeleinde een laag te vormen op de basis die Node.js vormt. Enkele voorbeelden hiervan zijn Express.js, Koa.js, Hapi.js, Restify,... \\
-De frameworks die meer een toevoeging zijn in plaats van een inkapseling, brengen route afhandeling zonder de binding van een alles in één framework. Ze steunen op het principe van een `middleware stack`, wat kort door de bocht een verzameling is van functies die in een bepaalde volgorde worden uitgevoerd en daarbij logica of route manipulaties uitvoeren. Het manipuleren van de route houdt in dat er aanpassingen gedaan worden aan het binnenkomende verzoek of het uitgaande antwoord op de server.
+Net zoals bij de opkomst van JavaScript in de jaren 2000, is er bij de opkomst van Node.js ook onvermijdelijk een markt ontstaan voor verscheidene frameworks en libraries gebaseerd op Node.js. \\ 
+In deze groei zijn er zij die zich focussen op het aanbieden van een volledig nieuw platform op basis van Node.js, met aansluitend bepaalde templates om een projectstructuur op te bouwen. Daarnaast zijn er zij die eerder worden aangeboden als library. De libraries hebben als doeleinde een laag te vormen op Node.js als platform, enkele voorbeelden hiervan zijn Express.js, Koa.js, Hapi.js, Restify,$\dots$ \\
+De libraries, die meer een toevoeging zijn in plaats van een inkapseling, brengen route afhandeling zonder de binding van een alles in één framework. Ze steunen op het principe van een “middleware-stack”, wat kort door de bocht een verzameling is van functies die in een bepaalde volgorde worden uitgevoerd en daarbij logica of route manipulaties uitvoeren. Het manipuleren van de route houdt in dat er aanpassingen gedaan worden aan het binnenkomende request of het uitgaande response van de server. \\
+Voor dit onderzoek wordt systematisch onderzocht hoe bepaalde Node.js libraries een aanwinst kunnen zijn voor de beste tech-stack die tracht aangetoond te worden.
 
 \subsection{Database object mapping}
 
-Bij het opbouwen van een RESTful service, met oog op data manipulatie en creatie (CRUD), wordt de overweging gemaakt welke soort databank zal gebruikt worden voor de `use case` in kwestie. Dit onderzoek focust zich niet op het soort databank en kiest simpelweg voor een relationele databank, namelijk MySQL. Waar het onderzoek zich wel op focust is hoe de verbinding wordt gelegd tussen de server en databank. \\
-Ruwe data in databanken is niet geschikt om meteen te worden gebruikt door de Node.js server. De typering van data in de databank komt niet overeen met de JavaScript datatypes. Bij `data object mapping` wordt de ruwe data omgezet naar een bruikbaar JavaScript object met toepasselijke datatypes aan de hand van vooropgestelde data modellen. \\
-Het onderzoek gebruikt een relationele databank en zal gebruik maken van een ORM (Object Relational Mapping) library.
+Bij het opbouwen van een RESTful service, met oog op manipulatie en creatie van data (CRUD), wordt de overweging gemaakt welke soort databank zal gebruikt worden voor de ``use case'' in kwestie. Dit onderzoek focust zich niet op het soort databank en kiest simpelweg voor een relationele databank, namelijk MySQL. Waar het onderzoek zich wel op focust is hoe de verbinding wordt opgesteld tussen de server en databank. \\
+De ruwe data in databanken is niet geschikt om meteen te worden gebruikt door een Node.js server. De typering van data in de databank komt niet overeen met de JavaScript datatypes. Bij ``data object mapping'' wordt de ruwe data omgezet naar een bruikbaar JavaScript object met toepasselijke datatypes aan de hand van vooropgestelde datamodellen. \\
+Het onderzoek gebruikt een relationele databank en zal gebruik maken van een ORM-library (Object Relational Mapping).
 
 \subsection{Documentatie}
 
-Het documenteren van een API dient als wegwijzer voor gebruikers, andere teams binnen een organisatie of `third party` instanties die de API zouden gebruiken. De verschillende routes, of `endpoints`, worden beschreven met respectievelijk mogelijke data die mee over het verzoek wordt verstuurd of ontvangen via een antwoord. Zoals geldt voor een REST API worden alle mogelijke CRUD (Create Read Update Delete) operaties gedocumenteerd. \\
-In organisaties met verschillende teams, die op zich verscheidene services beheren, wordt er nauw gelet op documentatie. Elk team is verantwoordelijk voor het aanpassen van de betreffende documentatie wanneer er, om het in vakjargon te zeggen, een `contract change` is. Dit kan duiden op naam verandering in van een endpoint of het toevoegen van een nieuwe.
+Het documenteren van een API dient als wegwijzer voor gebruikers, andere teams binnen een organisatie of ``third party'' instanties die de API zouden gebruiken. De verschillende routes, of ``endpoints'', worden beschreven met respectievelijk mogelijke data die mee over het request wordt verstuurd of ontvangen via een response. Elke HTTP-operatie die gebeurd op de server wordt gedocumenteerd. \\
+In organisaties met verschillende teams, die op zich verscheidene services kunnen beheren, wordt er nauw gelet op documentatie. Elk team is verantwoordelijk voor het aanpassen van de betreffende documentatie wanneer er, om het in vakjargon te zeggen, een ``contract change'' is. Dit kan duiden op naamverandering in één of meer van de endpoints of het toevoegen van een nieuw endpoint. \\
+Binnen het onderzoek wordt er aan de hand van een vergelijkende studie onderzocht welk documentatie-framework het best past op tech-stack.
 
 %---------- Methodologie ------------------------------------------------------
 \section{Methodologie}
 \label{sec:methodologie}
 
-Het onderzoek bestaat uit verschillende fasen, waarbij in de eerste fase een onderzoek gedaan wordt naar de verschillende mogelijke technologieën per service onderdeel. Dit kan bijvoorbeeld zijn voor bepalen van het Node.js of documentatie framework. De eerste fase maakt een modulair beeld van de volledige project omvang en zijn `tech stack`. \\
-In een volgende fase wordt de basis gelegd van het project in Node.js en hoe TypeScript hier geïntegreerd kan worden. Daarbij wordt aangehaald welke configuratie er specifiek moet gebeuren en wat het juist inhoud. Verder in deze fase wordt voort gebouwd op de gelegde basis. Voor elk deel van de tech stack gaat een vergelijkende studie tussen de mogelijke technologieën uitmaken welke wordt toegevoegd. \\
-Vervolgens volgt een test fase waarbij het geheel wordt gedraaid en getest. Het testen van de API zal gebeuren via Postman en mogelijks worden eigen gecreëerde applicaties gebruikt voor het genereren van API verkeer. Wanneer alles in het geheel getest is wordt over gegaan naar de laatste fase om conclusie te trekken over het gehele proces en de, al dan niet, beweegreden voor sommige keuzen.
+Het onderzoek bestaat uit verschillende fasen, waarbij in de eerste fase een onderzoek gedaan wordt naar de verschillende mogelijke technologieën per serviceonderdeel. Dit kan bijvoorbeeld zijn voor het bepalen van een Node.js- of documentatie-framework. De eerste fase maakt een modulair beeld van het volledige project en zijn tech-stack. \\
+In een volgende fase wordt de basis gelegd van het project in Node.js en hoe TypeScript geïntegreerd kan worden. Daarbij wordt aangehaald welke configuratie er specifiek moet gebeuren en wat het inhoud. Later in deze fase wordt verder gebouwd op de gelegde basis. Voor elk deel van de tech-stack gaat een vergelijkende studie tussen de mogelijke technologieën uitmaken welke wordt toegevoegd. \\
+Vervolgens is er een testfase waarbij het gehele project wordt gedraaid en getest. Het testen van de API zal gebeuren via Postman en voor het genereren van API verkeer worden mogelijks eigen gecreëerde applicaties gebruikt. \\
+Wanneer alles in het geheel getest is wordt overgegaan naar de laatste fase om een conclusie te trekken over het gehele proces en de, al dan niet, beweegredenen voor sommige keuzen.
 
 %---------- Verwachte resultaten ----------------------------------------------
 \section{Verwachte resultaten}
 \label{sec:verwachte_resultaten}
 
-Het opzetten van dergelijke server applicatie in Node.js met TypeScript integratie is gunstig voor het ontwikkelingsproces. De leercurve die er mee gepaard gaat is een kost die de ontwikkelaar of organisatie wilt dragen om meer zekerheid en taal veiligheid te hebben binnen Node.js services. \\
-Na het onderzoeken van de geschikte `tech stack` voor REST API's in Node.js loont het om te zien dat de finale werking stabiel is bij hoog server verkeer. Het gecreëerde project kan dienen als basis voor uitwerkingen van backend services in bedrijven die een microservice architectuur hanteren.
+Het opzetten van dergelijke serverapplicatie in Node.js met TypeScript integratie is gunstig voor het ontwikkelingsproces. De leercurve die er mee gepaard gaat is een kost die de ontwikkelaar of organisatie wilt dragen om meer zekerheid en taal veiligheid te hebben binnen Node.js-applicaties. \\
+Na het onderzoeken van de geschikte tech-stack voor RESTful Node.js-services loont het om te zien dat de finale werking stabiel is bij hoog server verkeer. De gecreëerde basis kan dienen voor uitwerking van backend services in bedrijven die een microservice-architectuur hanteren.
 
 %---------- Verwachte conclusies ----------------------------------------------
 \section{Verwachte conclusies}
 \label{sec:verwachte_conclusies}
 
-Het opzetten van een Node.js server met Typescript zal niet altijd de go-to oplossing voor alle projecten. Alles hangt af van wat het project precies inhoud. Als er een kleine server moet opgezet worden die enkel moet dienen als proxy, zal niet de beslissing genomen worden om de volledige opzet te doen zoals beschreven in het onderzoek. Sommige projecten vragen een meer directe aanpak en daarvoor is puur JavaScript in Node.js meer rechtdoorzee. \\
-Wanneer de aanpak zoals voorgesteld in het onderzoek kan worden gehanteerd is het vast en zeker een meerwaarde. Het gecreëerde project voldoet aan alle criteria die een moderne REST API in Node.js moet bieden met de meest prominente technologieën van het moment.
+De uitwerking die het onderzoek voorlegt voor Node.js backend oplossingen is geschikt als basis voor RESTful serverapplicaties. De TypeScript integratie draagt bij aan de stabiliteit van de service en voorziet taalveiligheid in een omgeving onderhevig aan ``silent error'' gevallen. Bovendien bestaat de tech-stack uit de meest prominente technologieën van het moment. \\
+De opzet van een Node.js server met Typescript en de daarbij horende tech-stack is niet altijd de go-to oplossing voor alle projecten. Alles hangt af van projectinhoud. Als een kleine server moet opgezet worden die enkel als proxy moet dienen, zal bijvoorbeeld niet geopteerd worden om de volledige opzet te doen zoals beschreven in het onderzoek. Sommige projecten vragen een meer directe aanpak en daarvoor is een Node.je serverapplicatie in JavaScript meer rechtdoorzee.
 
