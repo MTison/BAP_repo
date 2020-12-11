@@ -1,0 +1,20 @@
+{
+  "name": "bap_experiment",
+  "version": "0.1.0",
+  "description": "An experimental project in function of the BAP thesis",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "dev": "node index.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/MTison/BAP_repo.git"
+  },
+  "author": "Matthias Tison",
+  "license": "UNLICENSED",
+  "bugs": {
+    "url": "https://github.com/MTison/BAP_repo/issues"
+  },
+  "homepage": "https://github.com/MTison/BAP_repo#readme"
+}
