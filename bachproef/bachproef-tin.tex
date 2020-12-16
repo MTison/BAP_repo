@@ -6,6 +6,7 @@
 \documentclass{bachproef-tin}
 
 \usepackage{listings}
+\usepackage{glossaries}
 \usepackage{xcolor}
 \usepackage{minted}
 \usemintedstyle{vs}
@@ -13,34 +14,51 @@
 \usepackage{hogent-thesis-titlepage} % Titelpagina conform aan HOGENT huisstijl
 
 %%---------- Documenteigenschappen ---------------------------------------------
-% TODO: Vul dit aan met je eigen info:
 
 % De titel van het rapport/bachelorproef
-\title{Titel}
+\title{De systematische opbouw van een Node.js-applicatie met TypeScript-integratie als basis voor webservices}
 
 % Je eigen naam
-\author{Steven Stevens}
+\author{Matthias Tison}
 
 % De naam van je promotor (lector van de opleiding)
-\promotor{Jan Janssens}
+\promotor{Leen Vuyge}
 
 % De naam van je co-promotor. Als je promotor ook je opdrachtgever is en je
 % dus ook inhoudelijk begeleidt (en enkel dan!), mag je dit leeg laten.
-\copromotor{Piet Pieters}
+\copromotor{Arvid De Meyer}
 
 % Indien je bachelorproef in opdracht van/in samenwerking met een bedrijf of
 % externe organisatie geschreven is, geef je hier de naam. Zoniet laat je dit
 % zoals het is.
-\instelling{---}
+\instelling{Codifly}
 
 % Academiejaar
-\academiejaar{2018-2019}
+\academiejaar{2020-2021}
 
 % Examenperiode
 %  - 1e semester = 1e examenperiode => 1
 %  - 2e semester = 2e examenperiode => 2
 %  - tweede zit  = 3e examenperiode => 3
-\examenperiode{2}
+\examenperiode{1}
+
+% Genereer de `glossaries`
+\makeglossaries
+
+% Definities van de termen in de `glossary`
+\newglossaryentry{API}{name=API, description={Application Programming Interface}}
+\newglossaryentry{CSS}{name=CSS, description={Cascading Style Sheet}}
+\newglossaryentry{ECMA}{name=ECMA, description={European Computer Manufacturers Association}}
+\newglossaryentry{FIFO}{name=FIFO, description={First In First Out}}
+\newglossaryentry{HTML}{name=HTML, description={HyperText Markup Language}}
+\newglossaryentry{HTTP}{name=HTTP, description={Hypertext Transfer Protocol}}
+\newglossaryentry{JIT}{name=JIT, description={Just In Time}}
+\newglossaryentry{JSON}{name=JSON, description={JavaScript Object Notation}}
+\newglossaryentry{LIFO}{name=LIFO, description={Last In First Out}}
+\newglossaryentry{NPM}{name=npm, description={Node Package Manager}}
+\newglossaryentry{OS}{name=OS, description={Operating System}}
+\newglossaryentry{REST}{name=REST, description={Representational State Transfer}}
+\newglossaryentry{XML}{name=XML, description={Extensible Markup Language}}
 
 %===============================================================================
 % Inhoud document
@@ -81,10 +99,8 @@
 
 \listoffigures
 \listoftables
-
-% Als je een lijst van afkortingen of termen wil toevoegen, dan hoort die
-% hier thuis. Gebruik bijvoorbeeld de ``glossaries'' package.
-% https://www.overleaf.com/learn/latex/Glossaries
+% Print alle termen in de `glossary`
+\printglossaries
 
 %---------- Kern ---------------------------------------------------------------
 
@@ -98,13 +114,7 @@
 \input{standvanzaken}
 \input{methodologie}
 
-% Voeg hier je eigen hoofdstukken toe die de ``corpus'' van je bachelorproef
-% vormen. De structuur en titels hangen af van je eigen onderzoek. Je kan bv.
-% elke fase in je onderzoek in een apart hoofdstuk bespreken.
-
 %\input{...}
-%\input{...}
-%...
 
 \input{conclusie}
 
@@ -122,7 +132,7 @@
 Het onderwerp van deze bachelorproef is gebaseerd op een onderzoeksvoorstel dat vooraf werd beoordeeld door de promotor. Dat voorstel is opgenomen in deze bijlage.
 
 % Verwijzing naar het bestand met de inhoud van het onderzoeksvoorstel
-\input{../voorstel/voorstel-inhoud}
+\input{../voorstel/MatthiasTison_voorstel_inhoud}
 
 %%---------- Andere bijlagen --------------------------------------------------
 % TODO: Voeg hier eventuele andere bijlagen toe
